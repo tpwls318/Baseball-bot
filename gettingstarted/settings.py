@@ -136,3 +136,6 @@ STATICFILES_DIRS = (
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
+# Facebook setting
+FB_PAGE_ACCESS_TOKEN = "EAAYXEyBkGJUBAAzu0lR523kATzdciycr4rP7lQdoEYZBSxokR83ZCOfcgUEJUuV3Rtr224o1tGzZBJZBZAFzhWEo1F8YwQGMTNaf7RuUodZC9KxZCJtErYbeKpgZCoRj7ZAglonU7AzWPTrj48ppYp07EXuj2VGuyKO8PnIQlOLxm7AZDZD"
+FB_PAGE_URL = "https://graph.facebook.com/v2.6/me/messages?access_token=" + FB_PAGE_ACCESS_TOKEN

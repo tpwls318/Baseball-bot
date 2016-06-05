@@ -1,7 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.conf import settings
 
 from .models import Greeting
+import simplejson as json
+import requests
+
 
 # Create your views here.
 def index(request):
@@ -16,7 +20,30 @@ def index(request):
             return HttpResponse('Error')
 
     elif request.method == 'POST':
-        pass
+
+        data = json.loads(request.body)
+
+        text_message = data['entry'][0]['messaging'][0]['message']['text']
+        sender_id = data['entry'][0]['messaging'][0]['sender']['id']
+
+        print sender_id
+
+        headers = {
+            'content-type': 'application/json'
+        }
+        payload = {
+            'recipient': {
+                'id': sender_id
+            },
+            'message': {
+                'text': 'OK!'
+            }
+        }
+
+        r = requests.post(settings.FB_PAGE_URL, headers=headers, data=payload)
+        print r.text
+
+        return HttpResponse('')
 
     return render(request, 'index.html')
 
