@@ -21,35 +21,38 @@ def index(request):
 
     elif request.method == 'POST':
 
+        try:
+            data = json.loads(request.body)
 
-        data = json.loads(request.body)
+            text_message = data['entry'][0]['messaging'][0]['message']['text']
+            sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
-        text_message = data['entry'][0]['messaging'][0]['message']['text']
-        sender_id = data['entry'][0]['messaging'][0]['sender']['id']
-
-        print sender_id
-        # p1 = Player.objects.filter()
-        #p1.name
-        headers = {
-            'content-type': 'application/json'
-        }
-        payload = {
-            'recipient': {
-                'id': sender_id
-            },
-            'message': {
-                'text': 'OK!'
+            print sender_id
+            # p1 = Player.objects.filter()
+            #p1.name
+            headers = {
+                'content-type': 'application/json'
             }
-        }
+            payload = {
+                'recipient': {
+                    'id': sender_id
+                },
+                'message': {
+                    'text': 'OK!'
+                }
+            }
 
 
-#23
+    #23
 
 
-        r = requests.post(settings.FB_PAGE_URL, headers=headers, data=payload)
-        print r.text
-#4
-        return HttpResponse('')
+            r = requests.post(settings.FB_PAGE_URL, headers=headers, data=payload)
+            print r.text
+    #4
+            return HttpResponse('')
+        except:
+            print 'Exception occured'
+            return HttpResponse('')
 
     return render(request, 'index.html')
 
