@@ -51,7 +51,8 @@ def index(request):
             print r.text
     #4
             return HttpResponse('')
-        except:
+        except Exception, e:
+            print e
             print 'Exception occured'
             return HttpResponse('')
 
