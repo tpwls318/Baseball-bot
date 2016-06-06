@@ -29,7 +29,7 @@ def index(request):
 
             print sender_id
 
-            p = Pitcher.objects.filter(first_name= text_message)
+            p = Pitcher.objects.filter(first_name=text_message)
             stat = p[0].show_statistics()
             headers = {
                 'content-type': 'application/json'
