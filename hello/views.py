@@ -21,6 +21,8 @@ def index(request):
 
     elif request.method == 'POST':
 
+        print request.body
+
         try:
             data = json.loads(request.body)
 
