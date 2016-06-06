@@ -48,7 +48,7 @@ def index(request):
     #23
 
 
-            r = requests.post(settings.FB_PAGE_URL, headers=headers, data=payload)
+            r = requests.post(settings.FB_PAGE_URL, headers=headers, data=json.dumps(payload))
             print r.text
     #4
             return HttpResponse('')
