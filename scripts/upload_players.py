@@ -42,3 +42,5 @@ def run():
 
         p = Pitcher(**data)
         p.save()
+
+        print p.show_statistics()

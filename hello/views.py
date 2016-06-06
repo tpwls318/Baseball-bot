@@ -21,8 +21,6 @@ def index(request):
 
     elif request.method == 'POST':
 
-        print request.body
-
         try:
             data = json.loads(request.body)
 
@@ -30,8 +28,9 @@ def index(request):
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
             print sender_id
-            # p1 = Player.objects.filter()
-            #p1.name
+
+            p = Pitcher.objects.filter(first_name= text_message)
+            stat = p[0].show_statistics()
             headers = {
                 'content-type': 'application/json'
             }
@@ -40,7 +39,7 @@ def index(request):
                     'id': sender_id
                 },
                 'message': {
-                    'text': 'OK!'
+                    'text': stat
                 }
             }
 
