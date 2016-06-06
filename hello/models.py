@@ -12,6 +12,10 @@ class Player(models.Model):
     team = models.CharField(max_length=50)
     contract_date = models.DateField(auto_now = True, auto_now_add = False)
 
+    def __unicode__(self):
+        return u'{0} {1}'.format(self.first_name, self.last_name)
+
+
 class Pitcher(Player):
     pit_hand = models.CharField(max_length = 50) #ex) right handed, left handed
     kinds = models.CharField(max_length=50) #ex) starting pitcher, relief pitcher, closer, (winning pither)
@@ -20,6 +24,9 @@ class Pitcher(Player):
     l = models.PositiveSmallIntegerField() #loses
     sv = models.PositiveSmallIntegerField() #saves
     k9 = models.DecimalField(max_digits=4, decimal_places=2)  #Strikeouts Per Nine innings  ex ) 10.83 , 7.58
+
+    def show_statistics(self):
+        return u'Hand:{pit_hand}\tKinds:{kinds}'.format(pit_hand=self.pit_hand, kinds=self.kinds)
 
 class Hitter(Player):
     hit_hand = models.CharField(max_length=50)  # ex) right handed, left handed

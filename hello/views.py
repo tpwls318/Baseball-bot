@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.conf import settings
 
-from .models import Greeting
+from .models import *
 import simplejson as json
 import requests
 
@@ -21,13 +21,15 @@ def index(request):
 
     elif request.method == 'POST':
 
+
         data = json.loads(request.body)
 
         text_message = data['entry'][0]['messaging'][0]['message']['text']
         sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
         print sender_id
-
+        # p1 = Player.objects.filter()
+        #p1.name
         headers = {
             'content-type': 'application/json'
         }
@@ -40,9 +42,13 @@ def index(request):
             }
         }
 
+
+#23
+
+
         r = requests.post(settings.FB_PAGE_URL, headers=headers, data=payload)
         print r.text
-
+#4
         return HttpResponse('')
 
     return render(request, 'index.html')
