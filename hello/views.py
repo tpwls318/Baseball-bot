@@ -65,7 +65,7 @@ def index(request):
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
-            print sender_id
+            print user_steps
 
             return_text = "No return..."
 
