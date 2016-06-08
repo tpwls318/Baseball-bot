@@ -5,8 +5,11 @@ from django.conf import settings
 from .models import *
 import simplejson as json
 import requests
-
-
+first_name = {}
+user_messages = {}
+player_type_n = 0
+player_type = 0
+flag = 0
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
@@ -25,11 +28,11 @@ def index(request):
             data = json.loads(request.body)
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
-            flag = 0
-            print sender_id
 
+            print sender_id
+            first_name = user_messages[sender_id]
             p = Pitcher.objects.filter(first_name=text_message)
-            pl = Pitcher.objects.filter(last_name=text_message)
+            pl = Pitcher.objects.filter(first_name=first_name,last_name=text_message)
             h = Hitter.objects.filter(first_name=text_message)
             if text_message == "hi":
                 player_type_n = 0
@@ -53,7 +56,7 @@ def index(request):
                         'id': sender_id
                     },
                     'message': {
-                        'text': "hi " + sender_id + ", \nPlease type first name of pitcher"
+                        'text': "Please type first name of pitcher"
                     }
                 }
                 player_type_n = 1
@@ -66,7 +69,7 @@ def index(request):
                         'id': sender_id
                     },
                     'message': {
-                        'text': "hi " + sender_id + ", \nPlease type first name of hitter"
+                        'text':  "Please type first name of hitter"
                     }
                 }
                 player_type_n = 2
@@ -121,7 +124,7 @@ def index(request):
                             }
                         }
                     else:
-                        firstname = text_message
+                        user_messages[sender_id] = text_message
                         headers = {
                             'content-type': 'application/json'
                         }
