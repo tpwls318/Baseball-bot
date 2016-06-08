@@ -49,9 +49,12 @@ def run():
         p = Pitcher(**data)
         p.save()
         print p.show_statistics()
+
     for rnum in range(nrows_h):
         if rnum == 0:
             continue
+
+        data = {}
         data['first_name'] = xl_sheet_hitter.cell(rnum, 0).value
         data['last_name'] = xl_sheet_hitter.cell(rnum, 1).value
         data['position'] = xl_sheet_hitter.cell(rnum, 2).value
