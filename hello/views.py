@@ -24,7 +24,6 @@ def index(request):
     elif request.method == 'POST':
 
         # Steps
-        # ——
 
         # User (4 steps)        Bot
         # 1. Say hi
