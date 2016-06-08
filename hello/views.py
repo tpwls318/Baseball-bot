@@ -5,7 +5,7 @@ from django.conf import settings
 from .models import *
 import simplejson as json
 import requests
-first_name = {}
+get_first_name = {}
 user_messages = {}
 player_type_n = 0
 player_type = 0
@@ -30,9 +30,9 @@ def index(request):
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
             print sender_id
-            first_name = user_messages[sender_id]
+            get_first_name = user_messages[sender_id]
             p = Pitcher.objects.filter(first_name=text_message)
-            pl = Pitcher.objects.filter(first_name=first_name,last_name=text_message)
+            pl = Pitcher.objects.filter(first_name=get_first_name,last_name=text_message)
             h = Hitter.objects.filter(first_name=text_message)
             if text_message == "hi":
                 player_type_n = 0
