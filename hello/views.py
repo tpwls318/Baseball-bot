@@ -119,7 +119,7 @@ def index(request):
                                 0].show_statistics()
                         else:
                             return_text = "There's no hitter whose name is " + first_name + " " + last_name
-
+                     del user_steps[sender_id]
             headers = {
                 'content-type': 'application/json'
             }
