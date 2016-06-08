@@ -31,14 +31,13 @@ def run():
         data['position'] = xl_sheet.cell(rnum, 2).value
         data['age'] = xl_sheet.cell(rnum, 3).value
         data['team'] = xl_sheet.cell(rnum, 4).value
-        data['contract_date'] = xl_sheet.cell(rnum, 5).value
-        data['pit_hand'] = xl_sheet.cell(rnum, 6).value
-        data['kinds'] = xl_sheet.cell(rnum, 7).value
-        data['era'] = xl_sheet.cell(rnum, 8).value
-        data['w'] = xl_sheet.cell(rnum, 9).value
-        data['l'] = xl_sheet.cell(rnum, 10).value
-        data['sv'] = xl_sheet.cell(rnum, 11).value
-        data['k9'] = xl_sheet.cell(rnum, 12).value
+        data['pit_hand'] = xl_sheet.cell(rnum, 5).value
+        data['kinds'] = xl_sheet.cell(rnum, 6).value
+        data['era'] = xl_sheet.cell(rnum, 7).value
+        data['w'] = xl_sheet.cell(rnum, 8).value
+        data['l'] = xl_sheet.cell(rnum, 9).value
+        data['sv'] = xl_sheet.cell(rnum, 10).value
+        data['k9'] = xl_sheet.cell(rnum, 11).value
 
         p = Pitcher(**data)
         p.save()
