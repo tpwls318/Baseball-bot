@@ -65,7 +65,7 @@ def index(request):
 
             print sender_id
 
-            return_text = "No return…"
+            return_text = "No return..."
 
             # check step
             sender = user_steps.get(sender_id)
