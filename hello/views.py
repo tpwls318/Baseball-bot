@@ -9,7 +9,7 @@ get_first_name = {}
 user_messages = {}
 player_type_n = 0
 player_type = 0
-flag = 0
+
 # Create your views here.
 def index(request):
     # return HttpResponse('Hello from Python!')
@@ -28,7 +28,7 @@ def index(request):
             data = json.loads(request.body)
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
-
+            flag = 0
             print sender_id
             get_first_name = user_messages[sender_id]
             p = Pitcher.objects.filter(first_name=text_message)
