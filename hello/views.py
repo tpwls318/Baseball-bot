@@ -56,7 +56,6 @@ def index(request):
         #       },
         #       'sender4': {
         #           'current_step': 1,
-        #       …
         #   }
 
         try:
