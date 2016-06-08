@@ -23,25 +23,118 @@ def index(request):
 
         try:
             data = json.loads(request.body)
-
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
-
+            flag = 0
             print sender_id
 
             p = Pitcher.objects.filter(first_name=text_message)
-            stat = p[0].show_statistics()
-            headers = {
-                'content-type': 'application/json'
-            }
-            payload = {
-                'recipient': {
-                    'id': sender_id
-                },
-                'message': {
-                    'text': stat
+            pl = Pitcher.objects.filter(last_name=text_message)
+            h = Hitter.objects.filter(first_name=text_message)
+            if text_message == "hi":
+                player_type_n = 0
+                headers = {
+                    'content-type': 'application/json'
                 }
-            }
+                payload = {
+                    'recipient': {
+                        'id': sender_id
+                    },
+                    'message': {
+                        'text': "hi "+sender_id+", \nPlease type player type you want to search"
+                    }
+                }
+            elif text_message == "Pitcher":
+                headers = {
+                    'content-type': 'application/json'
+                }
+                payload = {
+                    'recipient': {
+                        'id': sender_id
+                    },
+                    'message': {
+                        'text': "hi " + sender_id + ", \nPlease type first name of pitcher"
+                    }
+                }
+                player_type_n = 1
+            elif text_message == "Hitter":
+                headers = {
+                    'content-type': 'application/json'
+                }
+                payload = {
+                    'recipient': {
+                        'id': sender_id
+                    },
+                    'message': {
+                        'text': "hi " + sender_id + ", \nPlease type first name of hitter"
+                    }
+                }
+                player_type_n = 2
+            else:
+                flag = 1
+            if flag ==0:
+                if     player_type_n==0 or player_type_n==1 or player_type_n==2 :
+                     player_type = player_type_n
+            elif flag ==1 :
+                player_type = player_type_n+3
+            # pitcher selected
+            if player_type == 4:
+                if len(p) >= 0 :
+                    if len(p) == 0 or len(pl)>0:
+                        statl = pl[0].show_statistics()
+                        if len(pl)>0:
+                            headers = {
+                                'content-type': 'application/json'
+                            }
+                            payload = {
+                                'recipient': {
+                                    'id': sender_id
+                                },
+                                'message': {
+                                    'text': statl
+                                }
+                            }
+                        else:
+                            headers = {
+                                'content-type': 'application/json'
+                            }
+                            payload = {
+                                'recipient': {
+                                    'id': sender_id
+                                },
+                                'message': {
+                                    'text': "There's no pitcher have that first name"
+                                }
+                            }
+                    elif len(p) == 1:
+                        stat = p[0].show_statistics()
+
+                        headers = {
+                            'content-type': 'application/json'
+                        }
+                        payload = {
+                            'recipient': {
+                                'id': sender_id
+                            },
+                            'message': {
+                                'text': "Here is data for " + text_message+" :\n" +stat
+                            }
+                        }
+                    else:
+                        firstname = text_message
+                        headers = {
+                            'content-type': 'application/json'
+                        }
+                        payload = {
+                            'recipient': {
+                                'id': sender_id
+                            },
+                            'message': {
+                                'text': "Please type last name"
+                            }
+                        }
+
+
 
 
     #23
