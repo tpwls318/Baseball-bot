@@ -75,7 +75,7 @@ def index(request):
             if sender is None:
                 # make new entry for this sender
                 user_steps[sender_id] = {
-                    'current_step': 1,
+                    'current_step': '1',
                 }
                 return_text = 'Hi ' + sender_id + ',\nPlease type player type you want to search'
 
@@ -84,22 +84,22 @@ def index(request):
                 # get current step and make a right question
                 current_step = sender['current_step']
 
-                if current_step == 1:
+                if current_step == '1':
                     if text_message in ['Pitcher', 'Hitter']:
                         sender['type'] = text_message  # this should be either 'Pitcher' or 'Hitter'
-                        sender['current_step'] = 2
+                        sender['current_step'] = '2'
                         return_text = 'Please type the first name of the player'
                     else:
                         return_text = 'Please type player type you want to search'
 
-                elif current_step == 2:
+                elif current_step == '2':
                     sender['first_name'] = text_message  # this should be the first name of the player
-                    sender['current_step'] = 3
+                    sender['current_step'] = '3'
                     return_text = 'Please type the last name of the player'
 
-                elif current_step == 3:
+                elif current_step == '3':
                     sender['last_name'] = text_message  # this should be the last name of the player
-                    sender['current_step'] = 4
+                    sender['current_step'] = '4'
 
                     # Search with full name
                     player_type = sender['type']
@@ -147,11 +147,3 @@ def index(request):
 
     return render(request, 'index.html')
 
-def db(request):
-
-    greeting = Greeting()
-    greeting.save()
-
-    greetings = Greeting.objects.all()
-
-    return render(request, 'db.html', {'greetings': greetings})
