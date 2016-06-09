@@ -80,7 +80,7 @@ def index(request):
                 user_steps[sender_id] = {
                     'current_step': '1',
                 }
-                sender_name = {}
+                sender_name = ''
                 if sender_id == 671646526310057:
                     sender_name = '세진'
                 elif sender_id == 1083957935010953:
