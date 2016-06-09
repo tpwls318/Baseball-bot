@@ -81,11 +81,11 @@ def index(request):
                     'current_step': '1',
                 }
                 sender_name = ''
-                if sender_id == 671646526310057:
+                if sender_id == '671646526310057':
                     sender_name = '세진'
-                elif sender_id == 1083957935010953:
+                elif sender_id == '1083957935010953':
                     sender_name = '수현'
-                elif sender_id == 1020119021404095:
+                elif sender_id == '1020119021404095':
                     sender_name = 'Juno'
                 return_text = 'Hi ' + sender_name + ',\nPlease type player type you want to search'
 
