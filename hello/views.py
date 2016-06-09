@@ -108,7 +108,10 @@ def index(request):
                 elif current_step == '2':
                     sender['current_step'] = '3'
                     sender['first_name'] = text_message  # this should be the first name of the player
-                    return_text = 'Please type the last name of the player'
+                    if sender['type'] == 'Pitcher':
+                        return_text = 'Please type the last name of the Pitcher'
+                    elif sender['type'] == 'Hitter':
+                        return_text = 'Please type the last name of the Hitter'
 
                 elif current_step == '3':
                     sender['current_step'] = '4'
@@ -116,11 +119,11 @@ def index(request):
 
 
                     # Search with full name
-                    player_type = sender['type']
+                   # player_type = sender['type']
                     first_name = sender['first_name']
                     last_name = sender['last_name']
 
-                    if player_type == 'Pitcher':
+                    if sender['type'] == 'Pitcher':
                         pitchers = Pitcher.objects.filter(first_name=first_name, last_name=last_name)
 
                         if len(pitchers) > 0:
@@ -129,7 +132,7 @@ def index(request):
                         else:
                             return_text =  'There\'s no pitcher whose name is ' + first_name + ' ' + last_name
 
-                    elif player_type == 'Hitter':
+                    elif sender['type'] == 'Hitter':
                         hitters = Hitter.objects.filter(first_name=first_name, last_name=last_name)
 
                         if len(hitters) > 0:
