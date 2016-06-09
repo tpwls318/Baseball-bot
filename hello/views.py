@@ -66,12 +66,12 @@ def index(request):
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
 
             print user_steps
-            print 'Number of user steps : '+ len(user_steps)
+
             return_text = 'No return…'
 
             # check step
             sender = user_steps.get(sender_id)
-
+            print sender
             if sender is None:
                 # make new entry for this sender
                 user_steps[sender_id] = {
