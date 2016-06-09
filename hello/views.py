@@ -116,16 +116,12 @@ def index(request):
                 elif current_step == '3':
                     sender['current_step'] = '4'
                     sender['last_name'] = text_message  # this should be the last name of the player
-
-
                     # Search with full name
-                   # player_type = sender['type']
+                    # player_type = sender['type']
                     first_name = sender['first_name']
                     last_name = sender['last_name']
-
                     if sender['type'] == 'Pitcher':
                         pitchers = Pitcher.objects.filter(first_name=first_name, last_name=last_name)
-
                         if len(pitchers) > 0:
                             return_text = 'Here is the data for ' + first_name + ' ' + last_name +  ':\n\n'  + pitchers[
                                 0].show_statistics()
@@ -141,6 +137,7 @@ def index(request):
                         else:
                             return_text = 'There\'s no hitter whose name is '  + first_name + ' ' + last_name
                     del user_steps[sender_id]
+                    sender = None
             headers = {
                 'content-type': 'application/json'
             }
