@@ -9,7 +9,7 @@ import simplejson as json
 import requests
 
 user_steps = {}
-
+sender_name = {}
 
 # Create your views here.
 def index(request):
@@ -22,6 +22,8 @@ def index(request):
         else:
             # fail: response with any error message
             return HttpResponse('Error')
+
+
 
     elif request.method == 'POST':
 
@@ -61,6 +63,7 @@ def index(request):
         #   }
 
         try:
+
             data = json.loads(request.body)
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
@@ -77,7 +80,13 @@ def index(request):
                 user_steps[sender_id] = {
                     'current_step': '1',
                 }
-                return_text = 'Hi ' + sender_id + ',\nPlease type player type you want to search'
+                if sender_id == 671646526310057:
+                    sender_name = '세진'
+                elif sender_id == 1083957935010953:
+                    sender_name = '수현'
+                elif sender_id == 1020119021404095:
+                    sender_name = 'Juno'
+                return_text = 'Hi ' + sender_name + ',\nPlease type player type you want to search'
 
 
             else:
@@ -139,7 +148,7 @@ def index(request):
 
             r = requests.post(settings.FB_PAGE_URL, headers=headers, data=json.dumps(payload))
             print r.text
-            #print 'after received '+user_steps
+
             return HttpResponse('')
         except Exception, e:
             print e
