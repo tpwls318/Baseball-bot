@@ -137,7 +137,7 @@ def index(request):
 
             r = requests.post(settings.FB_PAGE_URL, headers=headers, data=json.dumps(payload))
             print r.text
-
+            print "after recieved "+user_steps
             return HttpResponse('')
         except Exception, e:
             print e
