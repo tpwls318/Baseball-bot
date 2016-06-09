@@ -86,20 +86,21 @@ def index(request):
 
                 if current_step == '1':
                     if text_message in ['Pitcher', 'Hitter']:
-                        sender['type'] = text_message  # this should be either 'Pitcher' or 'Hitter'
                         sender['current_step'] = '2'
+                        sender['type'] = text_message  # this should be either 'Pitcher' or 'Hitter'
                         return_text = 'Please type the first name of the player'
                     else:
                         return_text = 'Please type player type you want to search'
 
                 elif current_step == '2':
-                    sender['first_name'] = text_message  # this should be the first name of the player
                     sender['current_step'] = '3'
+                    sender['first_name'] = text_message  # this should be the first name of the player
                     return_text = 'Please type the last name of the player'
 
                 elif current_step == '3':
-                    sender['last_name'] = text_message  # this should be the last name of the player
                     sender['current_step'] = '4'
+                    sender['last_name'] = text_message  # this should be the last name of the player
+
 
                     # Search with full name
                     player_type = sender['type']
