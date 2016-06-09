@@ -67,7 +67,7 @@ def index(request):
 
             print user_steps
 
-            return_text = "No return..."
+            return_text = 'No return…'
 
             # check step
             sender = user_steps.get(sender_id)
@@ -77,7 +77,8 @@ def index(request):
                 user_steps[sender_id] = {
                     'current_step': 1,
                 }
-                return_text = "Hi " + sender_id + ",\nPlease type player type you want to search"
+                return_text = 'Hi ' + sender_id + ',\nPlease type player type you want to search'
+
 
             else:
                 # get current step and make a right question
@@ -94,7 +95,7 @@ def index(request):
                 elif current_step == 2:
                     sender['first_name'] = text_message  # this should be the first name of the player
                     sender['current_step'] = 3
-                    return_text = "Please type the last name of the player"
+                    return_text = 'Please type the last name of the player'
 
                 elif current_step == 3:
                     sender['last_name'] = text_message  # this should be the last name of the player
@@ -109,19 +110,19 @@ def index(request):
                         pitchers = Pitcher.objects.filter(first_name=first_name, last_name=last_name)
 
                         if len(pitchers) > 0:
-                            return_text = "Here is the data for " + first_name + " " + last_name + ":\n\n" + pitchers[
+                            return_text = 'Here is the data for ' + first_name + ' ' + last_name +  ':\n\n'  + pitchers[
                                 0].show_statistics()
                         else:
-                            return_text = "There's no pitcher whose name is " + first_name + " " + last_name
+                            return_text =  'There\'s no pitcher whose name is ' + first_name + ' ' + last_name
 
                     elif player_type == 'Hitter':
                         hitters = Hitter.objects.filter(first_name=first_name, last_name=last_name)
 
                         if len(hitters) > 0:
-                            return_text = "Here is the data for " + first_name + " " + last_name + ":\n\n" + hitters[
+                            return_text = 'Here is the data for ' + first_name + ' ' + last_name + ':\n\n' + hitters[
                                 0].show_statistics()
                         else:
-                            return_text = "There's no hitter whose name is " + first_name + " " + last_name
+                            return_text = 'There\'s no hitter whose name is '  + first_name + ' ' + last_name
                     del user_steps[sender_id]
             headers = {
                 'content-type': 'application/json'
@@ -137,7 +138,7 @@ def index(request):
 
             r = requests.post(settings.FB_PAGE_URL, headers=headers, data=json.dumps(payload))
             print r.text
-            print "after received "+user_steps
+            #print 'after received '+user_steps
             return HttpResponse('')
         except Exception, e:
             print e
