@@ -158,7 +158,7 @@ def index(request):
 
             return HttpResponse('')
         except Exception, e:
-            print e
+            print str(e)
             print 'Exception occurred'
             return HttpResponse('')
 
