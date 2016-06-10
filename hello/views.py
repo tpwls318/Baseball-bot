@@ -67,7 +67,9 @@ def index(request):
             data = json.loads(request.body)
             text_message = data['entry'][0]['messaging'][0]['message']['text']
             sender_id = data['entry'][0]['messaging'][0]['sender']['id']
-
+            page_id = data['entry'][0]['messaging'][0]['recipient']['id']
+            print sender_id
+            print page_id
             print user_steps
 
             return_text = 'No return…'
