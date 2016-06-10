@@ -28,7 +28,7 @@ class Pitcher(Player):
     k9 = models.DecimalField(max_digits=4, decimal_places=2)  #Strikeouts Per Nine innings  ex ) 10.83 , 7.58
 
     def show_statistics(self):
-        return u'first name:{first_name}\tlast name:{last_name}\tposition:{position}\tage =:{age}\tteam:{team}\tHand:{pit_hand}\tKinds:{kinds}\tera:{era}\tw:{w}\tl:{l}\tsv:{sv}\tk9:{k9}'.format(first_name=self.first_name,last_name=self.last_name, position = self.position, age=self.age, team=self.team, pit_hand=self.pit_hand, kinds=self.kinds,era=self.era, w=self.w, l=self.l, sv=self.sv, k9=self.k9)
+        return u'first name:{first_name}\nlast name:{last_name}\nposition:{position}\nage :{age}\nteam:{team}\nHand:{pit_hand}\nKinds:{kinds}\nera:{era}\nw:{w}\nl:{l}\nsv:{sv}\nk9:{k9}'.format(first_name=self.first_name,last_name=self.last_name, position = self.position, age=self.age, team=self.team, pit_hand=self.pit_hand, kinds=self.kinds,era=self.era, w=self.w, l=self.l, sv=self.sv, k9=self.k9)
 
         #  def show_statistics(self):
        # return u'Hand:{pit_hand}\tKinds:{kinds}'.format(first_name=self.first_name,last_name=self.last_name, position = self.position, age=self.age, team=self.team, contract_date=self.contract_date , pit_hand=self.pit_hand, kinds=self.kinds,
@@ -43,7 +43,7 @@ class Hitter(Player):
     r = models.PositiveSmallIntegerField()  # Runs
 
     def show_statistics(self):
-        return u'first name:{first_name}\tlast name:{last_name}\tposition:{position}\tage =:{age}\tteam:{team}\tHand:{hit_hand}\tavg:{avg}\tobp:{obp}\thr:{hr}\trbi:{rbi}\tr:{r}'.format(
+        return u'first name:{first_name}\nlast name:{last_name}\nposition:{position}\nage :{age}\nteam:{team}\nHand:{hit_hand}\navg:{avg}\nobp:{obp}\nhr:{hr}\nrbi:{rbi}\nr:{r}'.format(
            first_name=self.first_name, last_name=self.last_name, position=self.position, age=self.age, team=self.team,
              hit_hand=self.hit_hand, avg=self.avg, obp=self.obp, hr=self.hr, rbi=self.rbi,
            r=self.r)
